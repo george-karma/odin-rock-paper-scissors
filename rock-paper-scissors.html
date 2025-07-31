@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let humanScore = 0
+        let computerScore = 0
+        let winnerLooserMap = new Map()
+        winnerLooserMap.set('rock', 'scissors')
+        winnerLooserMap.set('scissors', 'paper')
+        winnerLooserMap.set('paper', 'rock')
+
+        let choiceArray = ['rock', 'paper', 'scissors']
+
+
+        let getRandomInt = (max) => Math.floor(Math.random() * max)
+        
+
+        function getComputerChoice(){
+            return choiceArray[getRandomInt(2)]
+        }
+
+        function getHumanChoice(){
+            return prompt("Rock, Paper or Scissors?").toLowerCase()
+        }
+
+        function playRound(humanChoice, computerChoice) {
+            console.log(`Computer threw ${computerChoice}, Human threw ${humanChoice}`)
+            if(winnerLooserMap.get(humanChoice) == computerChoice) {
+                humanScore ++;
+                console.log("Human Wins")
+            }
+            else if(winnerLooserMap.get(computerChoice) == humanChoice) {
+                computerScore ++;
+                console.log("Computer Wins")
+            }
+            else{
+                console.log("No winner")
+            }
+        }
+        
+        function playGame(){
+            for(let i = 0; i<5; i++ ){
+                playRound(getHumanChoice(), getComputerChoice())
+            }
+            if (humanScore > computerScore){
+                console.log(`Human wins overall game, computer score ${computerScore}, human score ${humanScore}`)
+            } else{
+                console.log(`Computer wins overall game, computer score ${computerScore}, human score ${humanScore}`)
+            }
+
+            
+        }
+
+        
+        playGame()
+
+    </script>
+</body>
+</html>
