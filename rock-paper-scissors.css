@@ -15,22 +15,12 @@ body {
     justify-content: center;
 }
 
-.game-area {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    display: flex;
-}
-
 .output {
+    justify-content: center;
     justify-content: space-around;
-    flex:auto;
 }
 
 .output div{
     flex-direction: column;
-}
-
-ul {
-    list-style: none
+    align-items: center;
 }
