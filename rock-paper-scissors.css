@@ -12,7 +12,9 @@ body {
     height: 100vh;
 }
 
-.header{
+.header,
+.footer
+{
     background-color: darkgoldenrod;
     justify-content: center;
 }
