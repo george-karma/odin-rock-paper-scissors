@@ -7,6 +7,7 @@ body {
     background-color: #101828;
     color: white;
     flex-direction: column;
+    
     margin: 0;
     flex-grow: 1;
     height: 100vh;
