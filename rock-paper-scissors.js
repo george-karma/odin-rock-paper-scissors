@@ -29,9 +29,6 @@ const choices = {
     }
 }
 
-
-
-
 const choiceArray = ['rock', 'paper', 'scissors']
 
 human = {
@@ -46,15 +43,16 @@ computer = {
     generateRandomChoice: () => choices[choiceArray[getRandomInt(2)]]
 }
 
+let roundNumber = 0
 
 let input = document.querySelector('.input')
 let humanOutput = document.querySelector('#human > h1')
 let computerOutput = document.querySelector('#computer > h1')
 let humanDisplayScore = document.querySelector('#human > p')
 let computerDisplayScore = document.querySelector('#computer > p')
+let roundNumberDisplay = document.querySelector('#round-number')
+let winnerDisplay = document.querySelector('#winner')
 
-let humanScore = 0
-let computerScore = 0
 
 let getRandomInt = (max) => Math.floor(Math.random() * max)
 
@@ -67,6 +65,22 @@ input.addEventListener('click', (e) => {
     }
 })
 
+function checkForWinner() {
+    let winner = ""
+    if (roundNumber >= 5) {
+        if (human.score > computer.score) {
+            winner = HUMAN
+        } else if (computer.score > human.score) {
+            winner = COMPUTER
+        } else {
+            winner = "No one"
+        }
+        winnerDisplay.textContent = `${winner} has won`
+    }
+}
+
+let updateRoundNumber = () => roundNumberDisplay.textContent = `Round Number: ${++roundNumber}`
+
 function incrementAndUpdateScore(scoreDisplay, player) {
     player.score = ++player.score
     scoreDisplay.textContent = `${player.displayName} Score: ${player.score}`
@@ -78,6 +92,7 @@ function updateChoiceDisplay() {
 }
 
 function playRound() {
+    updateRoundNumber()
     updateChoiceDisplay()
     if (human.currentChoice.beats(computer.currentChoice.choice)) {
         incrementAndUpdateScore(humanDisplayScore, human)
@@ -85,4 +100,5 @@ function playRound() {
     else if (computer.currentChoice.beats(human.currentChoice.choice)) {
         incrementAndUpdateScore(computerDisplayScore, computer)
     }
+    checkForWinner()
 }
